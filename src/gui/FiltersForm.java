@@ -28,6 +28,7 @@ public class FiltersForm extends JFrame {
     private JButton brightnessCorrectionButton;
     private JButton contrastEnhancmentButton;
     private JLabel imageLabel;
+    private JLabel processedImageLabel = new JLabel();
     private JButton originalImageButton;
     private JButton blurButton;
     private JButton edgeDetectionButton;
@@ -48,15 +49,21 @@ public class FiltersForm extends JFrame {
     private JLabel offsetLabel = new JLabel();
     private JLabel divisorLabel = new JLabel();
 
+
     BufferedImage img = ImageIO.read(new File(pathToImg));
     BufferedImage oldImg = ImageIO.read(new File(pathToImg));
+    BufferedImage processedImg = ImageIO.read(new File(pathToImg));
     DefaultTableModel model = new DefaultTableModel();
 
     public FiltersForm() throws IOException {
         ImageIcon icon = new ImageIcon(img);
+        ImageIcon processedIcon = new ImageIcon(processedImg);
         imageLabel.setSize(img.getWidth(), img.getHeight());
         imageLabel.setIcon(icon);
+        processedImageLabel.setSize(img.getWidth(),img.getHeight());
+        processedImageLabel.setIcon(processedIcon);
         this.add(imageLabel);
+        this.add(processedImageLabel);
         this.add(originalImageButton);
         this.add(inversionButton);
         this.add(brightnessCorrectionButton);

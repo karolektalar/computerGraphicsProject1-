@@ -78,6 +78,7 @@ public class FiltersForm extends JFrame {
 //        kernelHeight.setPreferredSize(new Dimension(40,24));
         kernelHeight.setText(" Set height ");
         kernelWidth.setText("Set width ");
+        kernelHeightLabel.setBorder(new EmptyBorder(10, 100, 10, 10));
         this.add(kernelHeightLabel);
         this.add(kernelHeight);
         this.add(kernelWidthLabel);

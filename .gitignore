@@ -2,6 +2,8 @@
 ### Java template
 *.class
 .idea/
+*.iml
+
 # BlueJ files
 *.ctxt
 

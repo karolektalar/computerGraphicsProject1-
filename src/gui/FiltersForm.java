@@ -1,9 +1,6 @@
 package gui;
 
-import filters.BrightnessCorrection;
-import filters.ContrastEnhancment;
-import filters.ConvolutionFilters;
-import filters.Inversion;
+import filters.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,7 +45,8 @@ public class FiltersForm extends JFrame {
     private JLabel kernelWidthLabel;
     private JLabel offsetLabel = new JLabel();
     private JLabel divisorLabel = new JLabel();
-
+    private JButton gammaCorrection = new JButton();
+    private JTextField gammaCorrectionCoef = new JTextField();
 
     BufferedImage img = ImageIO.read(new File(pathToImg));
     BufferedImage oldImg = ImageIO.read(new File(pathToImg));
@@ -100,6 +98,11 @@ public class FiltersForm extends JFrame {
         this.add(coreHeightTextField);
         this.add(coreWidthTextField);
         this.add(applyYourFilterButton);
+
+        gammaCorrection.setText("Gamma Correction");
+        gammaCorrectionCoef.setPreferredSize(new Dimension(40, 30));
+        this.add(gammaCorrectionCoef);
+        this.add(gammaCorrection);
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new FlowLayout());
@@ -322,7 +325,20 @@ public class FiltersForm extends JFrame {
                 imageLabel.setIcon(icon);
             }
         });
+        gammaCorrection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                GammaCorrection gc = new GammaCorrection();
+
+                img = gc.gammaCorrection(img, Double.parseDouble(gammaCorrectionCoef.getText()));
+                ImageIcon icon = new ImageIcon(img);
+                imageLabel.setIcon(icon);
+
+            }
+        });
+
     }
+
 
     public void setKernel(int width, int height) {
         model = new DefaultTableModel();

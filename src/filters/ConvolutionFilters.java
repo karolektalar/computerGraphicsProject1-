@@ -29,7 +29,7 @@ public class ConvolutionFilters {
 
     public static void edgeDetection(BufferedImage img, BufferedImage oldImg){
         double[][] matrix = {{0, -1, 0}, {-1, 4, -1}, {0, -1, 0}};
-        applyFilterWithMatrix(img, oldImg, matrix, 0, 1, 1, 1);
+        applyFilterWithMatrix(img, oldImg, matrix, 127, 1, 1, 1);
     }
 
     public static void embos(BufferedImage img, BufferedImage oldImg){
